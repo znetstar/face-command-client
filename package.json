@@ -4,7 +4,7 @@
   "description": "A JavaScript client for Face Command <https://github.com/znetstar/face-command>",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/index.js",
+    "test": "mocha test/index.js --exit",
     "docs": "grunt docs",
     "build": "grunt build",
     "prepublish": "npm run build"
