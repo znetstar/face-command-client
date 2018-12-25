@@ -1,5 +1,6 @@
-import { LogsServiceBase, LogEntry } from "face-command-common";
+import { LogsServiceBase } from "face-command-common";
 import AppResources from "./AppResources";
+import RPCModels from "./RPCModels";
 
 /**
  * Logs are sent via this service.
@@ -11,7 +12,7 @@ export default class LogsService extends LogsServiceBase {
     constructor(protected resources: AppResources) {
         super(resources);
         this.resources.rpcClient.on("logs.LogEntry", (rpcLogEntry: any) => {
-            this.emit("LogEntry", new LogEntry(rpcLogEntry.message, rpcLogEntry.level, new Date(rpcLogEntry.date), rpcLogEntry.meta));
+            this.emit("LogEntry", RPCModels.FromRPCLogEntry(rpcLogEntry));
         });
     }   
 
@@ -21,6 +22,6 @@ export default class LogsService extends LogsServiceBase {
      * @async
      */
     public async StreamHistory(start: number = -1): Promise<void> {
-        await this.resources.rpcClient.invoke("logs.StreamHistory", [ start ]);
+        return await this.resources.rpcClient.invoke("logs.StreamHistory", [ start ]);
     }
 }

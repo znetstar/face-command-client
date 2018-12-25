@@ -1,4 +1,4 @@
-import { Face, Command, RunCondition, Status } from "face-command-common";
+import { Face, Command, RunCondition, Status, LogEntry } from "face-command-common";
 
 /**
  * Processes objects sent from the RPC server.
@@ -37,5 +37,13 @@ export default class RPCModels {
      */
     public static FromRPCStatus(rpcStatus: any): Status {
         return new Status(rpcStatus.id, rpcStatus.statusType, rpcStatus.time, rpcStatus.recognizedFaces);
+    }
+
+    /**
+     * Converts RPC object.
+     * @param rpcLogEntry - RPC Object to convert
+     */
+    public static FromRPCLogEntry(rpcLogEntry: any): LogEntry {
+        return new LogEntry(rpcLogEntry.message, rpcLogEntry.level, new Date(rpcLogEntry.date), rpcLogEntry.meta);
     }
 }

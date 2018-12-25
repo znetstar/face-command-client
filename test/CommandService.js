@@ -1,22 +1,15 @@
-const { RunCondition, Face, Command } = require("face-command-common");
+const { RunCondition, Command, Face } = require("face-command-common");
 const chance = require('chance')();
 const { assert } = require("chai");
-const { setupServer, setupAppResources } = require("./common");
-const { CommandService } = require("../lib");
+const { setupServer, setupAppResources, fake, randomBytes } = require("./common");
+const { CommandService, RPCModels } = require("../lib");
 
 describe("CommandService", function () {
     describe("#PreprocessRunConditions", function () {
         it("Run conditions should contain the appropriate fields. Faces attached to the condition should be stripped to an id", function () {
             const faceIds = [];
 
-            const runConditions = [];
-            for (let i = 0; i < 5; i++) {
-                const faceId = chance.integer();
-                faceIds.push(faceId);
-                const face = new Face(faceId, chance.string(), null);
-                const runCondition = new RunCondition(0, [ face ], chance.integer(), chance.integer());
-                runConditions.push(runCondition);
-            }
+            const runConditions = fake.runConditions();
                 
             const rpcRunConditions = CommandService.PreprocessRunConditions(runConditions);
 
@@ -42,27 +35,20 @@ describe("CommandService", function () {
             const resources = setupAppResources(port);
             const cmdSvc = new CommandService(resources);
 
-            return new Promise((resolve, reject) => {
-                const face = new Face(chance.integer(), chance.string(), null);
-                const rc = new RunCondition(chance.integer(), [ face ]);
-                const command = new Command(chance.integer(), chance.string(), chance.string(), [ rc ]);
+            const id = chance.integer();
+            const data = randomBytes();
+            const command = fake.command();
+            command.id = id;
+            command.data = data;
                 
-                server.methods['commands.AddCommand'] = async (commandTypeName, runConditions, name, data) => {
-                    assert.equal(commandTypeName, command.type);
-                    assert.equal(name, command.name);
-                    assert.isNotEmpty(runConditions);
-                    const rpcRc = runConditions[0];
-                    assert.equal(rpcRc.runConditionType, rc.runConditionType)
-                    assert.isNotEmpty(rpcRc.facesToRecognize);
-                    assert.equal(rpcRc.facesToRecognize[0], face.id);
-                    httpServer.close();
-                    resolve();
-                    return command;
-                };
+            server.methods['commands.AddCommand'] = async (commandTypeName, runConditions, name, data) => {
+                command.runConditions = CommandService.PreprocessRunConditions(command.runConditions);
+                const rpcCommand = new Command(id, name, commandTypeName, runConditions, data);
+                assert.deepEqual(rpcCommand, command);
+                return command;
+            };
 
-                cmdSvc.AddCommand(command.type, command.runConditions, command.name);
-                cmdSvc.transports
-            });
+            const rpcCommand = await cmdSvc.AddCommand(command.type, command.runConditions, command.name, data);
         });
     });
 
@@ -73,9 +59,7 @@ describe("CommandService", function () {
             const resources = setupAppResources(port);
             const cmdSvc = new CommandService(resources);
 
-            const face = new Face(chance.integer(), chance.string(), null);
-            const rc = new RunCondition(chance.integer(), [ face ], chance.integer(), chance.integer());
-            const command = new Command(chance.integer(), chance.string(), chance.string(), [ rc ]);
+            const command = fake.command();
             
             server.methods['commands.GetCommand'] = async (commandId) => {
                 assert.equal(commandId, command.id, "Command ID sent did not match the original command ID");
@@ -94,14 +78,7 @@ describe("CommandService", function () {
             const resources = setupAppResources(port);
             const cmdSvc = new CommandService(resources);
 
-            const commands = [];
-            
-            for (let i = 0; i < 0; i++) {
-                const face = new Face(chance.integer(), chance.string(), null);
-                const rc = new RunCondition(chance.integer(), [ face ], chance.integer(), chance.integer());
-                const command = new Command(chance.integer(), chance.string(), chance.string(), [ rc ]);
-                commands.push(command);
-            }
+            const commands = fake.commands();
             
             server.methods['commands.GetCommands'] = async () => {
                 return commands;
@@ -127,9 +104,7 @@ describe("CommandService", function () {
             const resources = setupAppResources(port);
             const cmdSvc = new CommandService(resources);
 
-            const face = new Face(chance.integer(), chance.string(), null);
-            const rc = new RunCondition(chance.integer(), [ face ], chance.integer(), chance.integer());
-            const command = new Command(chance.integer(), chance.string(), chance.string(), [ rc ]);
+            const command = fake.command();
             
             server.methods['commands.UpdateCommand'] = async (commandDelta) => {
                 commandDelta.name = chance.string();
