@@ -5,3 +5,4 @@ docs
 .docs
 src
 .DS_Store
+.travis.yaml
