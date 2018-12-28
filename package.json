@@ -1,6 +1,6 @@
 {
   "name": "face-command-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JavaScript client for Face Command <https://github.com/znetstar/face-command>",
   "main": "lib/index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "url": "https://github.com/znetstar/face-command-client"
   },
   "devDependencies": {
+    "@types/chance": "^1.0.1",
     "chai": "^4.2.0",
     "chance": "^1.0.18",
     "get-port": "^4.1.0",
@@ -30,7 +31,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "face-command-common": "^1.0.0",
+    "face-command-common": "^1.1.0",
     "multi-rpc-browser": "^1.2.1"
   }
 }

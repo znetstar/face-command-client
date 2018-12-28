@@ -28,7 +28,7 @@ export default class RPCModels {
     public static FromRPCCommand(rpcCommand: any): Command {
         const conditions: RunCondition[] = [];
 
-        return new Command(rpcCommand.id, rpcCommand.name, rpcCommand.type, rpcCommand.runConditions.map(RPCModels.FromRPCRunCondition));
+        return new Command(rpcCommand.id, rpcCommand.name, rpcCommand.type, rpcCommand.runConditions.map(RPCModels.FromRPCRunCondition), rpcCommand.data);
     }
 
     /**

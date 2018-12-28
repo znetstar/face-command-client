@@ -54,7 +54,7 @@ describe("ConfigService", function () {
                 configStore[chance.string()] = chance.string();
             }
 
-            server.methods["config.GetConfig"] = async (key, value) => {
+            server.methods["config.GetConfig"] = async () => {
                 return configStore;
             };
 

@@ -1,8 +1,8 @@
-const { RunCondition, Command, Face } = require("face-command-common");
+const { Command } = require("face-command-common");
 const chance = require('chance')();
 const { assert } = require("chai");
-const { setupServer, setupAppResources, fake, randomBytes } = require("./common");
-const { CommandService, RPCModels } = require("../lib");
+const { setupServer, setupAppResources, fake } = require("./common");
+const { CommandService } = require("../lib");
 
 describe("CommandService", function () {
     describe("#PreprocessRunConditions", function () {
@@ -31,12 +31,12 @@ describe("CommandService", function () {
 
     describe("#AddCommand", function () {
         it("Should send a command to the server", async function () {
-            const { server, port, httpServer } = await setupServer();
+            const { server, port } = await setupServer();
             const resources = setupAppResources(port);
             const cmdSvc = new CommandService(resources);
 
             const id = chance.integer();
-            const data = randomBytes();
+            const data = fake.bytes();
             const command = fake.command();
             command.id = id;
             command.data = data;
@@ -48,7 +48,7 @@ describe("CommandService", function () {
                 return command;
             };
 
-            const rpcCommand = await cmdSvc.AddCommand(command.type, command.runConditions, command.name, data);
+            await cmdSvc.AddCommand(command.type, command.runConditions, command.name, data);
         });
     });
 
