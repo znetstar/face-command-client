@@ -1,6 +1,6 @@
 {
   "name": "face-command-client",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JavaScript client for Face Command <https://github.com/znetstar/face-command>",
   "main": "lib/index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "face-command-common": "^1.2.0",
+    "face-command-common": "^1.2.1",
     "multi-rpc-browser": "^1.2.1"
   }
 }

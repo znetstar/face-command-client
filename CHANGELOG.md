@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.3] - 2018-12-30
+### Changed
+- Update face-command-common.
+
 ## [1.0.2] - 2018-12-30
 ### Changed
 - Update face-command-common.
