@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.0] - 2018-12-31
+### Changed
+- AppResources constructor now accepts a generic transport.
+
 ## [1.0.3] - 2018-12-30
 ### Changed
 - Update face-command-common.
