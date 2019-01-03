@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.1] - 2018-01-02
+### Changed
+- Updates multi-rpc.
+
 ## [2.0.0] - 2018-12-31
 ### Changed
 - AppResources constructor now accepts a generic transport.
