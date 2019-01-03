@@ -1,6 +1,6 @@
 {
   "name": "face-command-client",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A JavaScript client for Face Command <https://github.com/znetstar/face-command>",
   "main": "lib/index.js",
   "scripts": {
@@ -27,14 +27,14 @@
     "mocha": "^5.2.0",
     "multi-rpc": "^1.4.0",
     "multi-rpc-msgpack-serializer": "^1.0.4",
-    "multi-rpc-websocket-client-side-transport": "^1.2.3",
+    "multi-rpc-websocket-client-side-transport": "^1.2.7",
     "shelljs": "^0.8.2",
     "typedoc": "^0.12.0",
     "typescript": "^3.0.3"
   },
   "dependencies": {
     "face-command-common": "^1.2.1",
-    "multi-rpc-common": "^2.2.5",
+    "multi-rpc-common": "^2.2.6",
     "multi-rpc-core": "^1.0.2"
   }
 }
