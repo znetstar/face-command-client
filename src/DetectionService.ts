@@ -22,6 +22,13 @@ export default class DetectionService extends DetectionServiceBase {
     }
 
     /**
+     * Returns the last status.
+     */
+    public async GetLastStatus(): Promise<Status> {
+        return await RPCModels.FromRPCStatus(this.resources.rpcClient.invoke("detection.GetLastStatus", []));
+    }
+
+    /**
      * Indicates if detection is currently running.
      */
     public async IsDetectionRunning(): Promise<boolean> {

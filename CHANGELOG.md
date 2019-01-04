@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.5] - 2019-01-04
+## [2.0.7] - 2019-01-04
 ### Changed
 - Update face-command-common.
 
