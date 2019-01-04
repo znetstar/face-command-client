@@ -1,6 +1,6 @@
 {
   "name": "face-command-client",
-  "version": "2.0.7",
+  "version": "2.0.9",
   "description": "A JavaScript client for Face Command <https://github.com/znetstar/face-command>",
   "main": "lib/index.js",
   "scripts": {

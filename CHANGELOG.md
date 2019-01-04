@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.9] - 2019-01-04
+### Changed
+- RPCModels methods return null/undefined if null/undefined is passed as in input.
+
 ## [2.0.7] - 2019-01-04
 ### Changed
 - Update face-command-common.

@@ -6,3 +6,4 @@ docs
 src
 .DS_Store
 .travis.yaml
+Gruntfile.js

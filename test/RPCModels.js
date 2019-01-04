@@ -22,6 +22,11 @@ describe("RPCModels", function () {
             assert.instanceOf(face, Face);
             assert.deepEqual(face, inputFace);
         });
+
+        it("Should return null if input is null", function () {
+            const value = RPCModels.FromRPCFace(null);
+            assert.isNull(value);
+        });
     });
 
     describe("#FromRPCRunCondition()", function () {
@@ -31,6 +36,11 @@ describe("RPCModels", function () {
             const condition = RPCModels.FromRPCRunCondition(inputCondition);
             assert.instanceOf(condition, RunCondition);
             assert.deepEqual(condition, inputCondition);
+        });
+
+        it("Should return null if input is null", function () {
+            const value = RPCModels.FromRPCRunCondition(null);
+            assert.isNull(value);
         });
     });
 
@@ -43,6 +53,11 @@ describe("RPCModels", function () {
             assert.instanceOf(command, Command);
             assert.deepEqual(command, inputCommand);
         });
+
+        it("Should return null if input is null", function () {
+            const value = RPCModels.FromRPCCommand(null);
+            assert.isNull(value);
+        });
     });
 
 
@@ -54,6 +69,11 @@ describe("RPCModels", function () {
             assert.instanceOf(status, Status);
             assert.deepEqual(status, inputStatus);
         });
+
+        it("Should return null if input is null", function () {
+            const value = RPCModels.FromRPCStatus(null);
+            assert.isNull(value);
+        });
     });
 
     describe("#FromRPCLogEntry()", function () {
@@ -63,6 +83,11 @@ describe("RPCModels", function () {
             const logEntry = RPCModels.FromRPCLogEntry(inputLogEntry);
             assert.instanceOf(logEntry, LogEntry);
             assert.deepEqual(logEntry, inputLogEntry);
+        });
+
+        it("Should return null if input is null", function () {
+            const value = RPCModels.FromRPCLogEntry(null);
+            assert.isNull(value);
         });
     });
 });
