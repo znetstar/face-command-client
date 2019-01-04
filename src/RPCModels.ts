@@ -44,6 +44,6 @@ export default class RPCModels {
      * @param rpcLogEntry - RPC Object to convert
      */
     public static FromRPCLogEntry(rpcLogEntry: any): LogEntry {
-        return new LogEntry(rpcLogEntry.message, rpcLogEntry.level, new Date(rpcLogEntry.date), rpcLogEntry.meta);
+        return new LogEntry(rpcLogEntry.message, rpcLogEntry.level, new Date(rpcLogEntry.date), rpcLogEntry.meta, rpcLogEntry.id);
     }
 }

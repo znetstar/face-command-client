@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.4] - 2019-01-04
+### Changed
+- Update face-command-common.
+
 ## [2.0.3] - 2019-01-02
 ### Changed
 - Updates multi-rpc.
