@@ -36,7 +36,7 @@ export default class RPCModels {
      * @param rpcFace - RPC Object to convert.
      */
     public static FromRPCStatus(rpcStatus: any): Status {
-        return new Status(rpcStatus.id, rpcStatus.statusType, rpcStatus.time, rpcStatus.recognizedFaces);
+        return new Status(rpcStatus.id, rpcStatus.statusType, rpcStatus.time, rpcStatus.brightness, rpcStatus.recognizedFaces);
     }
 
     /**
@@ -44,6 +44,6 @@ export default class RPCModels {
      * @param rpcLogEntry - RPC Object to convert
      */
     public static FromRPCLogEntry(rpcLogEntry: any): LogEntry {
-        return new LogEntry(rpcLogEntry.message, rpcLogEntry.level, new Date(rpcLogEntry.date), rpcLogEntry.meta);
+        return new LogEntry(rpcLogEntry.message, rpcLogEntry.level, new Date(rpcLogEntry.date), rpcLogEntry.meta, rpcLogEntry.id);
     }
 }
