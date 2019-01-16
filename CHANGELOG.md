@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.10] - 2019-01-16
+### Changed
+- Update multi-rpc-core.
+
 ## [2.0.9] - 2019-01-04
 ### Changed
 - RPCModels methods return null/undefined if null/undefined is passed as in input.
